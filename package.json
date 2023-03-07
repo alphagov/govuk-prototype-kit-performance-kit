@@ -5,8 +5,13 @@
     "start": "govuk-prototype-kit start"
   },
   "dependencies": {
+    "@dwp/dwp-frontend": "^2.4.0",
     "@govuk-prototype-kit/common-templates": "^1.0.0",
+    "@govuk-prototype-kit/step-by-step": "^2.1.0",
+    "@govuk-prototype-kit/task-list": "^1.0.0",
+    "@ministryofjustice/frontend": "^1.6.4",
     "govuk-frontend": "^4.5.0",
-    "govuk-prototype-kit": "file:../../opensource/alphagov/govuk-prototype-kit"
+    "govuk-prototype-kit": "file:../../opensource/alphagov/govuk-prototype-kit",
+    "hmrc-frontend": "^5.25.0"
   }
 }

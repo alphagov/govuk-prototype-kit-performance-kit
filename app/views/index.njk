@@ -1,7 +1,17 @@
-{% extends "layouts/main.html" %}
+{% extends "hmrc/layouts/account-header.html" %}
 
 {% block pageTitle %}
 Home – {{serviceName}} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ super() }}
+
+  {{ mojIdentityBar({
+    title: {
+      html: "<b>Jane Wolenksy</b> and <b>Simon Wolensky</b>"
+    }
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -9,13 +19,53 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
     <h1 class="govuk-heading-xl">
       {{ serviceName }}
     </h1>
+    {% from "timeline/macro.njk" import dwpTimeline %}
+    {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    {% set html %}
+      <p class="govuk-notification-banner__heading">
+        You have 7 days left to send your application.
+        <a class="govuk-notification-banner__link" href="#">View application</a>.
+      </p>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+    {{ dwpTimeline({
+      title: "Appointments",
+      events: [
+        {
+          name: "John Smith",
+          state: "Accepted",
+          date: "11 Aug 2021"
+        },
+        {
+          name: "John Smith",
+          state: "Declined",
+          date: "10 Aug 2021"
+        }
+      ]
+    }) }}
+    {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+    {{ govukDateInput({
+      id: "passport-issued",
+      namePrefix: "passport-issued",
+      fieldset: {
+        legend: {
+          text: "When was your passport issued?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "For example, 27 3 2007"
+      }
+    }) }}
   </div>
 </div>
 
